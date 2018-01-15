@@ -133,6 +133,17 @@ module Bitcoin
 
         Requests.response String
       end
+
+      struct ImportAddress < Request(String | Bool)
+        def initialize(
+          address : String, account : String = "", rescan : Bool = false
+        )
+          @method = "importaddress"
+          @params = [address, account, rescan]
+        end
+
+        Requests.response Nil
+      end
     end
   end
 end
